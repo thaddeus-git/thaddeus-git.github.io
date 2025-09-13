@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How do I delete a Git branch locally and remotely? - DeepV Code</title>
+    <meta name="description" content="Comprehensive guide to how do i delete a git branch locally and remotely?">
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: #fff;
+            border-bottom: 1px solid #e6e6e6;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #3b49df;
+        }
+        
+        /* Article */
+        .article {
+            padding: 2rem 0;
+            min-height: calc(100vh - 200px);
+        }
+        
+        .article-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #3b49df;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            background: #3b49df;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #000;
+            line-height: 1.2;
+        }
+        
+        .article-description {
+            font-size: 1.125rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        /* Content */
+        .content {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .content h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 2rem 0 1rem 0;
+            color: #000;
+        }
+        
+        .content h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 1.5rem 0 1rem 0;
+            color: #000;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e6e6e6;
+        }
+        
+        .content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 1.25rem 0 0.75rem 0;
+            color: #333;
+        }
+        
+        .content p {
+            margin-bottom: 1rem;
+        }
+        
+        .content ul, .content ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .content code {
+            background: #f4f4f4;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .content pre {
+            background: #f8f8f8;
+            border: 1px solid #e6e6e6;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        
+        .content pre code {
+            background: none;
+            padding: 0;
+            border-radius: 0;
+            font-size: 0.9rem;
+        }
+        
+        .content blockquote {
+            border-left: 4px solid #3b49df;
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .content a {
+            color: #3b49df;
+            text-decoration: none;
+        }
+        
+        .content a:hover {
+            text-decoration: underline;
+        }
+        
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .content th, .content td {
+            border: 1px solid #e6e6e6;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        
+        .content th {
+            background: #f8f8f8;
+            font-weight: 600;
+        }
+        
+        /* Back to guides */
+        .back-to-guides {
+            margin: 3rem 0;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .back-to-guides h3 {
+            margin-bottom: 0.5rem;
+            color: #3b49df;
+        }
+        
+        .back-to-guides p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        
+        .back-to-guides a {
+            color: #3b49df;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .back-to-guides a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            background: #000;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+        
+        footer a {
+            color: #3b49df;
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            
+            .content h1 {
+                font-size: 1.75rem;
+            }
+            
+            .content h2 {
+                font-size: 1.25rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">DeepV Code</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/guides/">Guides</a></li>
+                <li><a href="/about/">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article class="article">
+            <div class="container">
+                <div class="article-header">
+                    <div class="category-badge">Tools</div>
+                    <h1 class="article-title">How do I delete a Git branch locally and remotely?</h1>
+                    <p class="article-description">Comprehensive guide to how do i delete a git branch locally and remotely?</p>
+                </div>
+                
+                <div class="content">
+                    
+<p><h1>How to Delete a Git Branch Locally and Remotely: Complete Guide + 5 Methods</h1></p>
+
+<p><h2>Quick Answer</h2></p>
+
+<p>To delete a Git branch both locally and remotely, use these commands:</p>
+
+<p><pre><code class="language-bash"><h1>Delete remote branch (Git 1.7.0+)</h1></p>
+<p>git push origin --delete <branch-name></p>
+
+<p><h1>Delete local branch</h1></p>
+<p>git branch -d <branch-name></code></pre></p>
+
+<p>For older Git versions, use <code>git push origin :<branch-name></code> to delete the remote branch.</p>
+
+<p><h2>Choose Your Method</h2></p>
+
+<p><pre><code class="language-">Start Here: What's Your Situation?</p>
+<p>    |</p>
+<p>    ├─ 🚀 Speed Seeker ─────────► Use: git push -d origin <branch> && git branch -d <branch></p>
+<p>    |</p>
+<p>    ├─ 📚 Learning Explorer ────► Read: "Understanding 3 Types of Branches" section</p>
+<p>    |</p>
+<p>    ├─ 🔧 Problem Solver ───────► Copy-paste from "Ready-to-Use Code" section</p>
+<p>    |</p>
+<p>    ├─ 🏗️ Architecture Builder ──► Review: "Version Compatibility Matrix"</p>
+<p>    |</p>
+<p>    ├─ 🎨 Output Focused ───────► Check: "Common Problems & Solutions"</p>
+<p>    |</p>
+<p>    └─ ⚡ Legacy Maintainer ────► Use: git push origin :<branch> (older Git versions)</code></pre></p>
+
+<p><h2>Table of Contents</h2></p>
+
+<ul>
+<li><a href="#ready-to-use-code">Ready-to-Use Code</a></li>
+<li><a href="#method-1-modern-git-commands-recommended">Method 1: Modern Git Commands (Recommended)</a></li>
+<li><a href="#method-2-legacy-colon-syntax">Method 2: Legacy Colon Syntax</a></li>
+<li><a href="#method-3-force-delete-unmerged-branches">Method 3: Force Delete Unmerged Branches</a></li>
+<li><a href="#method-4-github-desktop-gui">Method 4: GitHub Desktop GUI</a></li>
+<li><a href="#method-5-batch-delete-with-aliases">Method 5: Batch Delete with Aliases</a></li>
+<li><a href="#understanding-3-types-of-branches">Understanding 3 Types of Branches</a></li>
+<li><a href="#version-compatibility-matrix">Version Compatibility Matrix</a></li>
+<li><a href="#common-problems--solutions">Common Problems & Solutions</a></li>
+<li><a href="#real-world-examples">Real-World Examples</a></li>
+<li><a href="#related-git-operations">Related Git Operations</a></li>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
+</ul>
+
+<p><h2>Ready-to-Use Code</h2></p>
+
+<p><pre><code class="language-bash"><h1>Most Common (Git 1.7.0+) - Copy & Paste Ready</h1></p>
+<p>git push origin --delete feature-branch</p>
+<p>git branch -d feature-branch</p>
+
+<p><h1>Alternative syntax (same result)</h1></p>
+<p>git push -d origin feature-branch</p>
+<p>git branch -d feature-branch</p>
+
+<p><h1>For older Git versions (pre-1.7.0)</h1></p>
+<p>git push origin :feature-branch</p>
+<p>git branch -d feature-branch</p>
+
+<p><h1>Force delete unmerged branch</h1></p>
+<p>git branch -D feature-branch</p>
+<p>git push origin --delete feature-branch</p>
+
+<p><h1>Clean up stale remote references</h1></p>
+<p>git fetch --prune</code></pre></p>
+
+<p><h2>Method 1: Modern Git Commands (Recommended)</h2></p>
+
+<p><strong>Best for:</strong> Git 1.7.0+ users who want clear, readable commands</p>
+
+<p>The modern approach uses explicit <code>--delete</code> flags that make your intentions crystal clear:</p>
+
+<p><pre><code class="language-bash"><h1>Step 1: Delete the remote branch</h1></p>
+<p>git push origin --delete <branch-name></p>
+
+<p><h1>Step 2: Delete the local branch</h1></p>
+<p>git branch -d <branch-name></code></pre></p>
+
+<p><strong>Example:</strong></p>
+<p><pre><code class="language-bash">git push origin --delete feature-login</p>
+<p>git branch -d feature-login</code></pre></p>
+
+<p><strong>Why this method is recommended:</strong></p>
+<ul>
+<li>✅ Self-documenting (clear what you're doing)</li>
+<li>✅ Works with all modern Git versions</li>
+<li>✅ Safer than cryptic colon syntax</li>
+<li>✅ Automatically removes remote-tracking branches</li>
+</ul>
+
+<p><strong>When to use:</strong></p>
+<ul>
+<li>You're using Git 1.7.0 or newer</li>
+<li>You want readable, maintainable scripts</li>
+<li>You're teaching Git to others</li>
+</ul>
+
+<p><h2>Method 2: Legacy Colon Syntax</h2></p>
+
+<p><strong>Best for:</strong> Older Git versions or when you need maximum compatibility</p>
+
+<p>This method uses Git's original push syntax where an empty local branch deletes the remote:</p>
+
+<p><pre><code class="language-bash"><h1>Delete remote branch (legacy syntax)</h1></p>
+<p>git push origin :<branch-name></p>
+
+<p><h1>Delete local branch</h1></p>
+<p>git branch -d <branch-name></code></pre></p>
+
+<p><strong>Example:</strong></p>
+<p><pre><code class="language-bash">git push origin :feature-login</p>
+<p>git branch -d feature-login</code></pre></p>
+
+<p><strong>How it works:</strong></p>
+<p>The colon syntax follows the pattern <code>git push origin [local]:[remote]</code>. When you omit the local part, you're pushing "nothing" to the remote branch, effectively deleting it.</p>
+
+<p><strong>When to use:</strong></p>
+<ul>
+<li>Git versions older than 1.7.0</li>
+<li>You're comfortable with Git's advanced syntax</li>
+<li>Working in environments with mixed Git versions</li>
+</ul>
+
+<p><h2>Method 3: Force Delete Unmerged Branches</h2></p>
+
+<p><strong>Best for:</strong> Cleaning up experimental or abandoned branches</p>
+
+<p>Sometimes branches haven't been merged and Git protects you from accidental deletion:</p>
+
+<p><pre><code class="language-bash"><h1>Force delete local branch (even if unmerged)</h1></p>
+<p>git branch -D <branch-name></p>
+
+<p><h1>Delete remote branch</h1></p>
+<p>git push origin --delete <branch-name></code></pre></p>
+
+<p><strong>Example:</strong></p>
+<p><pre><code class="language-bash">git branch -D experimental-feature</p>
+<p>git push origin --delete experimental-feature</code></pre></p>
+
+<p><strong>⚠️ Warning:</strong> The <code>-D</code> flag bypasses Git's safety checks. Use only when you're certain the branch can be discarded.</p>
+
+<p><strong>When to use:</strong></p>
+<ul>
+<li>Abandoning experimental work</li>
+<li>Cleaning up feature branches that won't be merged</li>
+<li>You've already merged changes manually</li>
+</ul>
+
+<p><h2>Method 4: GitHub Desktop GUI</h2></p>
+
+<p><strong>Best for:</strong> Visual learners and GUI-preferred workflows</p>
+
+<p>Using GitHub Desktop application:</p>
+
+<ol>
+<li><strong>Launch GitHub Desktop</strong></li>
+<li><strong>Select your repository</strong></li>
+<li><strong>Switch to the branch</strong> you want to delete</li>
+<li><strong>From Branch menu</strong> → Select "Unpublish..." (deletes remote)</li>
+<li><strong>From Branch menu</strong> → Select "Delete [branch-name]..." (deletes local)</li>
+</ol>
+
+<p><strong>When to use:</strong></p>
+<ul>
+<li>You prefer graphical interfaces</li>
+<li>You're new to Git command line</li>
+<li>You want visual confirmation before deletion</li>
+</ul>
+
+<p><h2>Method 5: Batch Delete with Aliases</h2></p>
+
+<p><strong>Best for:</strong> Power users who frequently delete branches</p>
+
+<p>Create a Git alias to delete both local and remote branches in one command:</p>
+
+<p><pre><code class="language-bash"><h1>Set up the alias</h1></p>
+<p>git config --global alias.rmbranch '!f(){ git branch -d ${1} && git push origin --delete ${1}; };f'</p>
+
+<p><h1>Usage</h1></p>
+<p>git rmbranch feature-branch</code></pre></p>
+
+<p><strong>Advanced alias with error handling:</strong></p>
+<p><pre><code class="language-bash">git config --global alias.kill '!f(){ git branch -D "$1"; git push origin --delete "$1"; };f'</code></pre></p>
+
+<p><strong>Bash function alternative:</strong></p>
+<p><pre><code class="language-bash"><h1>Add to your ~/.bashrc or ~/.zshrc</h1></p>
+<p>function gitdelete(){</p>
+<p>    git push origin --delete $1</p>
+<p>    git branch -D $1</p>
+<p>}</p>
+
+<p><h1>Usage</h1></p>
+<p>gitdelete feature-branch</code></pre></p>
+
+<p><h2>Understanding 3 Types of Branches</h2></p>
+
+<p><strong>Critical concept:</strong> When deleting Git branches, you're actually dealing with <strong>three different branches</strong>:</p>
+
+<p><pre><code class="language-">🏠 Local Repository          ☁️ Remote Repository (origin)</p>
+<p>├── 1. Local branch          ├── 2. Remote branch</p>
+<p>│   └── feature-login        │   └── feature-login</p>
+<p>└── 3. Remote-tracking       </p>
+<p>    └── origin/feature-login</code></pre></p>
+
+<p><h3>1. Local Branch</h3></p>
+<ul>
+<li><strong>Location:</strong> Your local machine</li>
+<li><strong>Purpose:</strong> Where you make commits</li>
+<li><strong>Delete with:</strong> <code>git branch -d <branch></code></li>
+</ul>
+
+<p><h3>2. Remote Branch  </h3></p>
+<ul>
+<li><strong>Location:</strong> Remote server (GitHub, GitLab, etc.)</li>
+<li><strong>Purpose:</strong> Shared with team members</li>
+<li><strong>Delete with:</strong> <code>git push origin --delete <branch></code></li>
+</ul>
+
+<p><h3>3. Local Remote-Tracking Branch</h3></p>
+<ul>
+<li><strong>Location:</strong> Your local machine (cached copy)</li>
+<li><strong>Purpose:</strong> Tracks the state of remote branches</li>
+<li><strong>Delete with:</strong> Automatic when you delete remote, or <code>git fetch --prune</code></li>
+</ul>
+
+<p><strong>Why this matters:</strong> Deleting only the local branch leaves the remote branch intact. Deleting only the remote branch leaves stale references locally.</p>
+
+<p><h2>Version Compatibility Matrix</h2></p>
+
+<p>| Method | Git 1.5.0 | Git 1.6.6 | Git 1.7.0+ | Git 2.8.0+ |</p>
+<p>|--------|-----------|-----------|------------|------------|</p>
+<p>| <code>git push origin :<branch></code> | ✅ | ✅ | ✅ | ✅ |</p>
+<p>| <code>git push origin --delete <branch></code> | ❌ | ❌ | ✅ | ✅ |</p>
+<p>| <code>git push origin -d <branch></code> | ❌ | ❌ | ❌ | ✅ |</p>
+<p>| <code>git fetch --prune</code> | ❌ | ✅ | ✅ | ✅ |</p>
+<p>| <code>git branch -D</code> (force) | ✅ | ✅ | ✅ | ✅ |</p>
+
+<p><strong>Check your Git version:</strong></p>
+<p><pre><code class="language-bash">git --version</code></pre></p>
+
+<p><h2>Common Problems & Solutions</h2></p>
+
+<p><h3>Problem 1: "error: branch 'remotes/origin/branch' not found"</h3></p>
+
+<p><pre><code class="language-bash"><h1>❌ Wrong</h1></p>
+<p>git branch -d remotes/origin/feature</p>
+
+<p><h1>✅ Correct</h1></p>
+<p>git push origin --delete feature</p>
+<p>git branch -d feature</code></pre></p>
+
+<p><strong>Solution:</strong> Don't try to delete remote-tracking branches directly. Delete the actual remote branch instead.</p>
+
+<p><h3>Problem 2: "error: The branch 'feature' is not fully merged"</h3></p>
+
+<p><pre><code class="language-bash"><h1>Error message</h1></p>
+<p>error: The branch 'feature' is not fully merged.</p>
+<p>If you are sure you want to delete it, run 'git branch -D feature'.</p>
+
+<p><h1>✅ Solutions</h1></p>
+<p><h1>Option 1: Force delete (if you're sure)</h1></p>
+<p>git branch -D feature</p>
+
+<p><h1>Option 2: Merge first, then delete</h1></p>
+<p>git checkout main</p>
+<p>git merge feature</p>
+<p>git branch -d feature</code></pre></p>
+
+<p><h3>Problem 3: "error: dst refspec matches more than one"</h3></p>
+
+<p>This happens when you have a branch and tag with the same name:</p>
+
+<p><pre><code class="language-bash"><h1>❌ Ambiguous</h1></p>
+<p>git push origin :release-1.0</p>
+
+<p><h1>✅ Specific</h1></p>
+<p>git push origin :refs/heads/release-1.0  # Delete branch</p>
+<p>git push origin :refs/tags/release-1.0   # Delete tag</code></pre></p>
+
+<p><h3>Problem 4: Remote branch still appears after deletion</h3></p>
+
+<p>Other team members need to clean up stale references:</p>
+
+<p><pre><code class="language-bash"><h1>Clean up obsolete remote-tracking branches</h1></p>
+<p>git fetch --prune</p>
+<p><h1>or</h1></p>
+<p>git remote prune origin</code></pre></p>
+
+<p><h3>Problem 5: Can't delete currently checked out branch</h3></p>
+
+<p><pre><code class="language-bash"><h1>❌ Error if you're on the branch</h1></p>
+<p>git branch -d current-branch</p>
+
+<p><h1>✅ Switch first</h1></p>
+<p>git checkout main</p>
+<p>git branch -d current-branch</code></pre></p>
+
+<p><h2>Real-World Examples</h2></p>
+
+<p><h3>Example 1: Feature Branch Cleanup</h3></p>
+
+<p><pre><code class="language-bash"><h1>After merging a feature branch</h1></p>
+<p>git checkout main</p>
+<p>git pull origin main</p>
+<p>git branch -d feature-user-auth</p>
+<p>git push origin --delete feature-user-auth</code></pre></p>
+
+<p><h3>Example 2: Hotfix Branch Cleanup</h3></p>
+
+<p><pre><code class="language-bash"><h1>After deploying a hotfix</h1></p>
+<p>git checkout main</p>
+<p>git branch -d hotfix-security-patch</p>
+<p>git push origin --delete hotfix-security-patch</p>
+
+<p><h1>Clean up on other machines</h1></p>
+<p>git fetch --prune</code></pre></p>
+
+<p><h3>Example 3: Experimental Branch Abandonment</h3></p>
+
+<p><pre><code class="language-bash"><h1>Abandoning experimental work</h1></p>
+<p>git checkout main</p>
+<p>git branch -D experiment-new-ui  # Force delete</p>
+<p>git push origin --delete experiment-new-ui</code></pre></p>
+
+<p><h3>Example 4: Bulk Branch Cleanup</h3></p>
+
+<p><pre><code class="language-bash"><h1>List merged branches</h1></p>
+<p>git branch --merged main</p>
+
+<p><h1>Delete multiple local branches</h1></p>
+<p>git branch --merged main | grep -v "main\|develop" | xargs -n 1 git branch -d</p>
+
+<p><h1>Clean up remote references</h1></p>
+<p>git fetch --prune</code></pre></p>
+
+<p><h2>Related Git Operations</h2></p>
+
+<p><h3>List All Branches</h3></p>
+<p><pre><code class="language-bash">git branch -a          # All branches (local + remote)</p>
+<p>git branch -r          # Remote branches only</p>
+<p>git branch --merged    # Merged branches</p>
+<p>git branch --no-merged # Unmerged branches</code></pre></p>
+
+<p><h3>Rename Branches</h3></p>
+<p><pre><code class="language-bash"><h1>Rename local branch</h1></p>
+<p>git branch -m old-name new-name</p>
+
+<p><h1>Rename remote branch (delete + push)</h1></p>
+<p>git push origin --delete old-name</p>
+<p>git push origin new-name</code></pre></p>
+
+<p><h3>Restore Deleted Branches</h3></p>
+<p><pre><code class="language-bash"><h1>Find the commit hash</h1></p>
+<p>git reflog</p>
+
+<p><h1>Recreate branch</h1></p>
+<p>git checkout -b recovered-branch <commit-hash></code></pre></p>
+
+<p><h3>Working with Forks</h3></p>
+<p><pre><code class="language-bash"><h1>Delete branch from your fork</h1></p>
+<p>git push origin --delete feature-branch</p>
+
+<p><h1>Delete branch from upstream (if you have access)</h1></p>
+<p>git push upstream --delete feature-branch</code></pre></p>
+
+<p><h2>Summary</h2></p>
+
+<p><h3>Key Takeaways</h3></p>
+
+<ol>
+<li><strong>Use modern syntax:</strong> <code>git push origin --delete <branch></code> is clearer than <code>git push origin :<branch></code></li>
+</ol>
+
+<ol>
+<li><strong>Remember the three branches:</strong> Local, remote, and remote-tracking branches are all separate entities</li>
+</ol>
+
+<ol>
+<li><strong>Safety first:</strong> Use <code>-d</code> instead of <code>-D</code> unless you're certain about force deletion</li>
+</ol>
+
+<ol>
+<li><strong>Clean up regularly:</strong> Run <code>git fetch --prune</code> to remove stale remote references</li>
+</ol>
+
+<ol>
+<li><strong>Check before deleting:</strong> Use <code>git branch --merged</code> to see which branches are safe to delete</li>
+</ol>
+
+<p><h3>Quick Reference Card</h3></p>
+
+<p><pre><code class="language-bash"><h1>Delete remote branch</h1></p>
+<p>git push origin --delete <branch></p>
+
+<p><h1>Delete local branch (safe)</h1></p>
+<p>git branch -d <branch></p>
+
+<p><h1>Delete local branch (force)</h1></p>
+<p>git branch -D <branch></p>
+
+<p><h1>Clean up stale references</h1></p>
+<p>git fetch --prune</p>
+
+<p><h1>Check Git version</h1></p>
+<p>git --version</code></pre></p>
+
+<p><h2>Frequently Asked Questions</h2></p>
+
+<p><h3>Q: Why does my query return "Everything up-to-date" after deleting?</h3></p>
+
+<p><strong>A:</strong> You likely deleted the local remote-tracking branch instead of the actual remote branch. Use <code>git push origin --delete <branch></code> to delete the remote branch properly.</p>
+
+<p><h3>Q: Which method is fastest for large repositories?</h3></p>
+
+<p><strong>A:</strong> All deletion methods are equally fast since they only remove references, not commit data. The speed difference is negligible. Choose based on Git version compatibility and readability preferences.</p>
+
+<p><h3>Q: How do I handle NULL values or non-existent branches?</h3></p>
+
+<p><strong>A:</strong> Git will show an error if you try to delete a non-existent branch:</p>
+<p><pre><code class="language-bash"><h1>Check if branch exists first</h1></p>
+<p>git show-ref --verify --quiet refs/heads/<branch> && git branch -d <branch></p>
+
+<p><h1>For remote branches</h1></p>
+<p>git ls-remote --exit-code origin <branch> && git push origin --delete <branch></code></pre></p>
+
+<p><h3>Q: Can I undo a branch deletion?</h3></p>
+
+<p><strong>A:</strong> Yes, if you know the commit hash:</p>
+<p><pre><code class="language-bash"><h1>Find the last commit of the deleted branch</h1></p>
+<p>git reflog</p>
+
+<p><h1>Recreate the branch</h1></p>
+<p>git checkout -b recovered-branch <commit-hash></code></pre></p>
+
+<p><h3>Q: What's the difference between -d and -D flags?</h3></p>
+
+<p><strong>A:</strong> </p>
+<ul>
+<li><code>-d</code> (safe delete): Only deletes if the branch has been merged</li>
+<li><code>-D</code> (force delete): Deletes regardless of merge status</li>
+<li>Use <code>-d</code> by default for safety</li>
+</ul>
+
+<p><h3>Q: Why do I still see the branch after deletion?</h3></p>
+
+<p><strong>A:</strong> You're likely seeing a stale remote-tracking branch. Clean it up with:</p>
+<p><pre><code class="language-bash">git fetch --prune</code></pre></p>
+
+<p><h3>Q: How do I delete branches with special characters in names?</h3></p>
+
+<p><strong>A:</strong> Quote the branch name:</p>
+<p><pre><code class="language-bash">git branch -d "feature/user-auth"</p>
+<p>git push origin --delete "feature/user-auth"</code></pre></p>
+
+<p><h3>Q: Can I delete the main/master branch?</h3></p>
+
+<p><strong>A:</strong> Most Git hosting services protect the default branch. You'll get an error like "cannot delete main branch." You'd need to change the default branch first in your repository settings.</p>
+
+<p><h3>Q: What happens to pull requests when I delete a branch?</h3></p>
+
+<p><strong>A:</strong> </p>
+<ul>
+<li><strong>GitHub/GitLab:</strong> Pull requests remain but show as "closed" </li>
+<li><strong>Local changes:</strong> Any unmerged commits in the branch are lost</li>
+<li><strong>Best practice:</strong> Merge or close pull requests before deleting branches</li>
+</ul>
+
+<p><h3>Q: How do I delete all merged branches at once?</h3></p>
+
+<p><strong>A:</strong> Use this command (be careful!):</p>
+<p><pre><code class="language-bash">git branch --merged main | grep -v "main\|develop" | xargs -n 1 git branch -d</code></pre></p>
+
+<p>This finds all branches merged into main, excludes main and develop, then deletes the rest.</p>
+                </div>
+                
+                <div class="back-to-guides">
+                    <h3>Found this helpful?</h3>
+                    <p>This guide is part of our comprehensive programming reference.</p>
+                    <a href="/guides/">← Browse all guides</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 DeepV Code. Comprehensive programming guides and solutions.</p>
+            <p>Built for developers, by developers. <a href="/about/">Learn more</a></p>
+        </div>
+    </footer>
+</body>
+</html>

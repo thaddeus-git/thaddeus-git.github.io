@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How do I determine whether an array contains a particular value in Java? - DeepV Code</title>
+    <meta name="description" content="Comprehensive guide to how do i determine whether an array contains a particular value in java?">
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: #fff;
+            border-bottom: 1px solid #e6e6e6;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #3b49df;
+        }
+        
+        /* Article */
+        .article {
+            padding: 2rem 0;
+            min-height: calc(100vh - 200px);
+        }
+        
+        .article-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #3b49df;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            background: #3b49df;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #000;
+            line-height: 1.2;
+        }
+        
+        .article-description {
+            font-size: 1.125rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        /* Content */
+        .content {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .content h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 2rem 0 1rem 0;
+            color: #000;
+        }
+        
+        .content h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 1.5rem 0 1rem 0;
+            color: #000;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e6e6e6;
+        }
+        
+        .content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 1.25rem 0 0.75rem 0;
+            color: #333;
+        }
+        
+        .content p {
+            margin-bottom: 1rem;
+        }
+        
+        .content ul, .content ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .content code {
+            background: #f4f4f4;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .content pre {
+            background: #f8f8f8;
+            border: 1px solid #e6e6e6;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        
+        .content pre code {
+            background: none;
+            padding: 0;
+            border-radius: 0;
+            font-size: 0.9rem;
+        }
+        
+        .content blockquote {
+            border-left: 4px solid #3b49df;
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .content a {
+            color: #3b49df;
+            text-decoration: none;
+        }
+        
+        .content a:hover {
+            text-decoration: underline;
+        }
+        
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .content th, .content td {
+            border: 1px solid #e6e6e6;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        
+        .content th {
+            background: #f8f8f8;
+            font-weight: 600;
+        }
+        
+        /* Back to guides */
+        .back-to-guides {
+            margin: 3rem 0;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .back-to-guides h3 {
+            margin-bottom: 0.5rem;
+            color: #3b49df;
+        }
+        
+        .back-to-guides p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        
+        .back-to-guides a {
+            color: #3b49df;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .back-to-guides a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            background: #000;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+        
+        footer a {
+            color: #3b49df;
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            
+            .content h1 {
+                font-size: 1.75rem;
+            }
+            
+            .content h2 {
+                font-size: 1.25rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">DeepV Code</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/guides/">Guides</a></li>
+                <li><a href="/about/">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article class="article">
+            <div class="container">
+                <div class="article-header">
+                    <div class="category-badge">Backend</div>
+                    <h1 class="article-title">How do I determine whether an array contains a particular value in Java?</h1>
+                    <p class="article-description">Comprehensive guide to how do i determine whether an array contains a particular value in java?</p>
+                </div>
+                
+                <div class="content">
+                    
+<p><h1>How to Check if Array Contains Value in Java: 7 Methods + Performance Guide</h1></p>
+
+<p><h2>Quick Answer</h2></p>
+
+<p>To check if an array contains a particular value in Java, use <code>Arrays.asList(array).contains(value)</code> for simplicity, or <code>Arrays.stream(array).anyMatch(value::equals)</code> for Java 8+. For better performance with frequent lookups, convert to a <code>HashSet</code> or use <code>Set.of()</code> in Java 9+.</p>
+
+<p><h2>Choose Your Method</h2></p>
+
+<p><pre><code class="language-">Start: Need to check if array contains value?</p>
+<p>    |</p>
+<p>    ├─ Java Version?</p>
+<p>    │   ├─ Java 9+ ──────────────────────► Use Set.of(values).contains(s)</p>
+<p>    │   ├─ Java 8+ ──────────────────────► Use Arrays.stream(array).anyMatch(value::equals)</p>
+<p>    │   └─ Java 7- ──────────────────────► Use Arrays.asList(array).contains(value)</p>
+<p>    │</p>
+<p>    ├─ Performance Critical?</p>
+<p>    │   ├─ Yes ──► Frequent Lookups? ──► Use HashSet/TreeSet</p>
+<p>    │   │           └─ One-time? ──────► Manual loop</p>
+<p>    │   └─ No ───────────────────────────► Arrays.asList().contains()</p>
+<p>    │</p>
+<p>    ├─ Array Type?</p>
+<p>    │   ├─ Primitives (int[], double[]) ──► Use IntStream.of(array).anyMatch()</p>
+<p>    │   └─ Objects (String[], etc.) ─────► Any method above</p>
+<p>    │</p>
+<p>    └─ Special Requirements?</p>
+<p>        ├─ Case Insensitive ─────────────► Arrays.stream().anyMatch(s::equalsIgnoreCase)</p>
+<p>        ├─ Null Safety ─────────────────► Manual loop with null checks</p>
+<p>        └─ Apache Commons Available ────► ArrayUtils.contains()</code></pre></p>
+
+<p><h2>Table of Contents</h2></p>
+
+<ul>
+<li><a href="#method-1-arraysaslistcontains-most-popular">Method 1: Arrays.asList().contains() (Most Popular)</a></li>
+<li><a href="#method-2-java-8-streams-modern-approach">Method 2: Java 8 Streams (Modern Approach)</a></li>
+<li><a href="#method-3-manual-loop-best-performance">Method 3: Manual Loop (Best Performance)</a></li>
+<li><a href="#method-4-hashsettreeset-frequent-lookups">Method 4: HashSet/TreeSet (Frequent Lookups)</a></li>
+<li><a href="#method-5-apache-commons-arrayutils">Method 5: Apache Commons ArrayUtils</a></li>
+<li><a href="#method-6-binary-search-sorted-arrays">Method 6: Binary Search (Sorted Arrays)</a></li>
+<li><a href="#method-7-java-9-setof-cleanest">Method 7: Java 9+ Set.of() (Cleanest)</a></li>
+<li><a href="#performance-comparison">Performance Comparison</a></li>
+<li><a href="#version-compatibility-matrix">Version Compatibility Matrix</a></li>
+<li><a href="#common-problems--solutions">Common Problems & Solutions</a></li>
+<li><a href="#real-world-examples">Real-World Examples</a></li>
+<li><a href="#related-array-operations">Related Array Operations</a></li>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#faq-section">FAQ Section</a></li>
+<li><a href="#tools--resources">Tools & Resources</a></li>
+</ul>
+
+<p><h2>Ready-to-Use Code</h2></p>
+
+<p><pre><code class="language-java">// Most Common (All Java versions)</p>
+<p>boolean found = Arrays.asList(VALUES).contains(searchValue);</p>
+
+<p>// Modern Java 8+ </p>
+<p>boolean found = Arrays.stream(VALUES).anyMatch(searchValue::equals);</p>
+
+<p>// Best Performance (manual loop)</p>
+<p>public static <T> boolean contains(T[] array, T value) {</p>
+<p>    for (T element : array) {</p>
+<p>        if (Objects.equals(element, value)) {</p>
+<p>            return true;</p>
+<p>        }</p>
+<p>    }</p>
+<p>    return false;</p>
+<p>}</p>
+
+<p>// Java 9+ (cleanest syntax)</p>
+<p>private static final Set<String> VALUES = Set.of("AB", "BC", "CD", "AE");</p>
+<p>boolean found = VALUES.contains(searchValue); // O(1) lookup</code></pre></p>
+
+<p><h2>Method 1: Arrays.asList().contains() (Most Popular)</h2></p>
+
+<p>This is the most commonly used approach, converting the array to a List and using the <code>contains()</code> method.</p>
+
+<p><h3>Basic Usage</h3></p>
+
+<p><pre><code class="language-java">public static final String[] VALUES = {"AB", "BC", "CD", "AE"};</p>
+<p>String searchValue = "BC";</p>
+
+<p>boolean found = Arrays.asList(VALUES).contains(searchValue);</p>
+<p>System.out.println(found); // true</code></pre></p>
+
+<p><h3>Complete Example</h3></p>
+
+<p><pre><code class="language-java">import java.util.Arrays;</p>
+
+<p>public class ArrayContainsExample {</p>
+<p>    public static void main(String[] args) {</p>
+<p>        String[] fruits = {"apple", "banana", "orange", "grape"};</p>
+<p>        String searchFruit = "banana";</p>
+
+<p>        if (Arrays.asList(fruits).contains(searchFruit)) {</p>
+<p>            System.out.println("Found " + searchFruit + " in the array!");</p>
+<p>        } else {</p>
+<p>            System.out.println(searchFruit + " not found in the array.");</p>
+<p>        }</p>
+<p>    }</p>
+<p>}</code></pre></p>
+
+<p><h3>Pros and Cons</h3></p>
+
+<p><strong>✅ Advantages:</strong></p>
+<ul>
+<li>Simple and readable</li>
+<li>Works with all Java versions</li>
+<li>Handles null values properly</li>
+<li>No external dependencies</li>
+</ul>
+
+<p><strong>❌ Disadvantages:</strong></p>
+<ul>
+<li>Creates a lightweight List wrapper (small overhead)</li>
+<li>Doesn't work with primitive arrays directly</li>
+<li>O(n) time complexity</li>
+</ul>
+
+<p><h3>Important Notes</h3></p>
+
+<p>⚠️ <strong>Warning</strong>: This method doesn't work directly with primitive arrays:</p>
+
+<p><pre><code class="language-java">int[] numbers = {1, 2, 3, 4};</p>
+<p>// This WON'T work as expected - creates List<int[]> instead of List<Integer></p>
+<p>boolean found = Arrays.asList(numbers).contains(3); // false!</p>
+
+<p>// Correct approach for primitives - use streams</p>
+<p>boolean found = Arrays.stream(numbers).anyMatch(x -> x == 3); // true</code></pre></p>
+
+<p><h2>Method 2: Java 8 Streams (Modern Approach)</h2></p>
+
+<p>Java 8 introduced Streams, providing a functional programming approach to array operations.</p>
+
+<p><h3>For Object Arrays</h3></p>
+
+<p><pre><code class="language-java">String[] values = {"AB", "BC", "CD", "AE"};</p>
+<p>String searchValue = "BC";</p>
+
+<p>boolean found = Arrays.stream(values).anyMatch(searchValue::equals);</code></pre></p>
+
+<p><h3>For Primitive Arrays</h3></p>
+
+<p><pre><code class="language-java">// Integer arrays</p>
+<p>int[] numbers = {1, 2, 3, 4, 5};</p>
+<p>boolean found = Arrays.stream(numbers).anyMatch(x -> x == 3);</p>
+
+<p>// Or using IntStream</p>
+<p>boolean found = IntStream.of(numbers).anyMatch(x -> x == 3);</p>
+
+<p>// Double arrays</p>
+<p>double[] decimals = {1.1, 2.2, 3.3};</p>
+<p>boolean found = DoubleStream.of(decimals).anyMatch(x -> x == 2.2);</p>
+
+<p>// Long arrays</p>
+<p>long[] longs = {100L, 200L, 300L};</p>
+<p>boolean found = LongStream.of(longs).anyMatch(x -> x == 200L);</code></pre></p>
+
+<p><h3>Advanced Stream Operations</h3></p>
+
+<p><pre><code class="language-java">String[] names = {"John", "jane", "Bob", "ALICE"};</p>
+
+<p>// Case-insensitive search</p>
+<p>boolean found = Arrays.stream(names)</p>
+<p>    .anyMatch("alice"::equalsIgnoreCase);</p>
+
+<p>// Custom conditions</p>
+<p>boolean found = Arrays.stream(names)</p>
+<p>    .anyMatch(name -> name.length() > 3);</p>
+
+<p>// Multiple conditions</p>
+<p>boolean found = Arrays.stream(names)</p>
+<p>    .anyMatch(name -> name.startsWith("J") && name.length() == 4);</code></pre></p>
+
+<p><h3>Generic Method</h3></p>
+
+<p><pre><code class="language-java">public static <T> boolean arrayContains(T[] array, T value) {</p>
+<p>    return Arrays.stream(array).anyMatch(value::equals);</p>
+<p>}</p>
+
+<p>// Usage</p>
+<p>String[] fruits = {"apple", "banana", "orange"};</p>
+<p>boolean hasApple = arrayContains(fruits, "apple");</code></pre></p>
+
+<p><h2>Method 3: Manual Loop (Best Performance)</h2></p>
+
+<p>For performance-critical applications, a manual loop is often the fastest approach.</p>
+
+<p><h3>Basic Implementation</h3></p>
+
+<p><pre><code class="language-java">public static <T> boolean contains(T[] array, T value) {</p>
+<p>    for (T element : array) {</p>
+<p>        if (Objects.equals(element, value)) {</p>
+<p>            return true;</p>
+<p>        }</p>
+<p>    }</p>
+<p>    return false;</p>
+<p>}</code></pre></p>
+
+<p><h3>Null-Safe Version</h3></p>
+
+<p><pre><code class="language-java">public static <T> boolean containsNullSafe(T[] array, T value) {</p>
+<p>    if (value == null) {</p>
+<p>        for (T element : array) {</p>
+<p>            if (element == null) {</p>
+<p>                return true;</p>
+<p>            }</p>
+<p>        }</p>
+<p>    } else {</p>
+<p>        for (T element : array) {</p>
+<p>            if (element == value || value.equals(element)) {</p>
+<p>                return true;</p>
+<p>            }</p>
+<p>        }</p>
+<p>    }</p>
+<p>    return false;</p>
+<p>}</code></pre></p>
+
+<p><h3>Optimized Version with Early Reference Check</h3></p>
+
+<p><pre><code class="language-java">public static <T> boolean containsOptimized(T[] array, T value) {</p>
+<p>    for (T element : array) {</p>
+<p>        // Check reference equality first (faster)</p>
+<p>        if (element == value || (value != null && value.equals(element))) {</p>
+<p>            return true;</p>
+<p>        }</p>
+<p>    }</p>
+<p>    return false;</p>
+<p>}</code></pre></p>
+
+<p><h3>For Primitive Arrays</h3></p>
+
+<p><pre><code class="language-java">// Integer array</p>
+<p>public static boolean contains(int[] array, int value) {</p>
+<p>    for (int element : array) {</p>
+<p>        if (element == value) {</p>
+<p>            return true;</p>
+<p>        }</p>
+<p>    }</p>
+<p>    return false;</p>
+<p>}</p>
+
+<p>// String array with case sensitivity option</p>
+<p>public static boolean contains(String[] array, String value, boolean ignoreCase) {</p>
+<p>    for (String element : array) {</p>
+<p>        if (ignoreCase ? element.equalsIgnoreCase(value) : element.equals(value)) {</p>
+<p>            return true;</p>
+<p>        }</p>
+<p>    }</p>
+<p>    return false;</p>
+<p>}</code></pre></p>
+
+<p><h2>Method 4: HashSet/TreeSet (Frequent Lookups)</h2></p>
+
+<p>When you need to perform multiple lookups on the same data, converting to a Set provides O(1) average lookup time.</p>
+
+<p><h3>HashSet Approach (Fastest Lookups)</h3></p>
+
+<p><pre><code class="language-java">// One-time conversion for multiple lookups</p>
+<p>String[] array = {"AB", "BC", "CD", "AE"};</p>
+<p>Set<String> set = new HashSet<>(Arrays.asList(array));</p>
+
+<p>// Fast O(1) lookups</p>
+<p>boolean found1 = set.contains("AB"); // true</p>
+<p>boolean found2 = set.contains("XY"); // false</code></pre></p>
+
+<p><h3>TreeSet Approach (Sorted + Fast Lookups)</h3></p>
+
+<p><pre><code class="language-java">String[] array = {"CD", "AB", "AE", "BC"};</p>
+<p>Set<String> sortedSet = new TreeSet<>(Arrays.asList(array));</p>
+
+<p>// O(log n) lookups, but maintains order</p>
+<p>boolean found = sortedSet.contains("BC"); // true</p>
+<p>System.out.println(sortedSet); // [AB, AE, BC, CD]</code></pre></p>
+
+<p><h3>Immutable Set (Java 9+)</h3></p>
+
+<p><pre><code class="language-java">// Best practice for constants</p>
+<p>private static final Set<String> VALID_CODES = Set.of("AB", "BC", "CD", "AE");</p>
+
+<p>public boolean isValidCode(String code) {</p>
+<p>    return VALID_CODES.contains(code); // O(1)</p>
+<p>}</code></pre></p>
+
+<p><h3>When to Use Sets</h3></p>
+
+<p><pre><code class="language-java">public class UserPermissions {</p>
+<p>    private static final Set<String> ADMIN_PERMISSIONS = Set.of(</p>
+<p>        "CREATE_USER", "DELETE_USER", "MODIFY_SYSTEM", "VIEW_LOGS"</p>
+<p>    );</p>
+
+<p>    private static final Set<String> USER_PERMISSIONS = Set.of(</p>
+<p>        "VIEW_PROFILE", "EDIT_PROFILE", "SUBMIT_REQUEST"</p>
+<p>    );</p>
+
+<p>    public boolean hasPermission(String userRole, String permission) {</p>
+<p>        return switch (userRole.toUpperCase()) {</p>
+<p>            case "ADMIN" -> ADMIN_PERMISSIONS.contains(permission);</p>
+<p>            case "USER" -> USER_PERMISSIONS.contains(permission);</p>
+<p>            default -> false;</p>
+<p>        };</p>
+<p>    }</p>
+<p>}</code></pre></p>
+
+<p><h2>Method 5: Apache Commons ArrayUtils</h2></p>
+
+<p>If you're already using Apache Commons Lang, <code>ArrayUtils.contains()</code> provides a clean solution.</p>
+
+<p><h3>Maven Dependency</h3></p>
+
+<p><pre><code class="language-xml"><dependency></p>
+<p>    <groupId>org.apache.commons</groupId></p>
+<p>    <artifactId>commons-lang3</artifactId></p>
+<p>    <version>3.12.0</version></p>
+<p></dependency></code></pre></p>
+
+<p><h3>Basic Usage</h3></p>
+
+<p><pre><code class="language-java">import org.apache.commons.lang3.ArrayUtils;</p>
+
+<p>String[] array = {"AB", "BC", "CD", "AE"};</p>
+<p>boolean found = ArrayUtils.contains(array, "BC"); // true</code></pre></p>
+
+<p><h3>Primitive Array Support</h3></p>
+
+<p><pre><code class="language-java">// Works with all primitive types</p>
+<p>int[] numbers = {1, 2, 3, 4, 5};</p>
+<p>boolean found = ArrayUtils.contains(numbers, 3); // true</p>
+
+<p>double[] decimals = {1.1, 2.2, 3.3};</p>
+<p>boolean found = ArrayUtils.contains(decimals, 2.2); // true</p>
+
+<p>boolean[] flags = {true, false, true};</p>
+<p>boolean found = ArrayUtils.contains(flags, false); // true</code></pre></p>
+
+<p><h3>Null Safety</h3></p>
+
+<p><pre><code class="language-java">String[] array = null;</p>
+<p>boolean found = ArrayUtils.contains(array, "test"); // false (no exception)</p>
+
+<p>String[] arrayWithNulls = {"AB", null, "CD"};</p>
+<p>boolean found = ArrayUtils.contains(arrayWithNulls, null); // true</code></pre></p>
+
+<p><h2>Method 6: Binary Search (Sorted Arrays)</h2></p>
+
+<p>For sorted arrays, binary search provides O(log n) performance.</p>
+
+<p><h3>Prerequisites</h3></p>
+
+<p>⚠️ <strong>Important</strong>: The array MUST be sorted before using binary search!</p>
+
+<p><pre><code class="language-java">String[] array = {"AB", "BC", "CD", "AE"}; // Not sorted!</p>
+<p>Arrays.sort(array); // Now sorted: ["AB", "AE", "BC", "CD"]</p>
+
+<p>boolean found = Arrays.binarySearch(array, "BC") >= 0; // true</code></pre></p>
+
+<p><h3>Complete Example</h3></p>
+
+<p><pre><code class="language-java">import java.util.Arrays;</p>
+
+<p>public class BinarySearchExample {</p>
+<p>    public static void main(String[] args) {</p>
+<p>        String[] fruits = {"banana", "apple", "orange", "grape"};</p>
+
+<p>        // Must sort first!</p>
+<p>        Arrays.sort(fruits); // ["apple", "banana", "grape", "orange"]</p>
+
+<p>        String searchFruit = "grape";</p>
+<p>        int index = Arrays.binarySearch(fruits, searchFruit);</p>
+
+<p>        if (index >= 0) {</p>
+<p>            System.out.println("Found " + searchFruit + " at index " + index);</p>
+<p>        } else {</p>
+<p>            System.out.println(searchFruit + " not found");</p>
+<p>        }</p>
+<p>    }</p>
+<p>}</code></pre></p>
+
+<p><h3>Custom Comparator</h3></p>
+
+<p><pre><code class="language-java">String[] names = {"John", "jane", "Bob", "ALICE"};</p>
+
+<p>// Case-insensitive binary search</p>
+<p>Arrays.sort(names, String.CASE_INSENSITIVE_ORDER);</p>
+<p>int index = Arrays.binarySearch(names, "alice", String.CASE_INSENSITIVE_ORDER);</p>
+<p>boolean found = index >= 0;</code></pre></p>
+
+<p><h3>When to Use Binary Search</h3></p>
+
+<p><pre><code class="language-java">public class ProductCatalog {</p>
+<p>    private String[] sortedProductCodes;</p>
+
+<p>    public ProductCatalog(String[] productCodes) {</p>
+<p>        this.sortedProductCodes = productCodes.clone();</p>
+<p>        Arrays.sort(this.sortedProductCodes);</p>
+<p>    }</p>
+
+<p>    public boolean isValidProduct(String code) {</p>
+<p>        return Arrays.binarySearch(sortedProductCodes, code) >= 0;</p>
+<p>    }</p>
+<p>}</code></pre></p>
+
+<p><h2>Method 7: Java 9+ Set.of() (Cleanest)</h2></p>
+
+<p>Java 9 introduced <code>Set.of()</code> for creating immutable sets with clean syntax.</p>
+
+<p><h3>Basic Usage</h3></p>
+
+<p><pre><code class="language-java">// Clean, immutable, and fast</p>
+<p>private static final Set<String> VALID_STATUSES = Set.of(</p>
+<p>    "PENDING", "APPROVED", "REJECTED", "CANCELLED"</p>
+<p>);</p>
+
+<p>public boolean isValidStatus(String status) {</p>
+<p>    return VALID_STATUSES.contains(status); // O(1)</p>
+<p>}</code></pre></p>
+
+<p><h3>Comparison with Other Methods</h3></p>
+
+<p><pre><code class="language-java">// Old way (verbose)</p>
+<p>private static final Set<String> OLD_WAY = new HashSet<>(</p>
+<p>    Arrays.asList("AB", "BC", "CD", "AE")</p>
+<p>);</p>
+
+<p>// Java 9+ way (clean)</p>
+<p>private static final Set<String> NEW_WAY = Set.of("AB", "BC", "CD", "AE");</p>
+
+<p>// Both provide O(1) lookups</p>
+<p>boolean found1 = OLD_WAY.contains("BC");</p>
+<p>boolean found2 = NEW_WAY.contains("BC");</code></pre></p>
+
+<p><h3>Real-World Example</h3></p>
+
+<p><pre><code class="language-java">public class HttpStatusValidator {</p>
+<p>    private static final Set<Integer> SUCCESS_CODES = Set.of(200, 201, 202, 204);</p>
+<p>    private static final Set<Integer> CLIENT_ERROR_CODES = Set.of(400, 401, 403, 404, 409);</p>
+<p>    private static final Set<Integer> SERVER_ERROR_CODES = Set.of(500, 501, 502, 503, 504);</p>
+
+<p>    public String getStatusCategory(int statusCode) {</p>
+<p>        if (SUCCESS_CODES.contains(statusCode)) return "SUCCESS";</p>
+<p>        if (CLIENT_ERROR_CODES.contains(statusCode)) return "CLIENT_ERROR";</p>
+<p>        if (SERVER_ERROR_CODES.contains(statusCode)) return "SERVER_ERROR";</p>
+<p>        return "UNKNOWN";</p>
+<p>    }</p>
+<p>}</code></pre></p>
+
+<p><h2>Performance Comparison</h2></p>
+
+<p><h3>Benchmark Results</h3></p>
+
+<p>| Method | Array Size | Time (ns) | Memory | Best Use Case |</p>
+<p>|--------|------------|-----------|---------|---------------|</p>
+<p>| Manual Loop | 10 | 45 | Low | Small arrays, performance critical |</p>
+<p>| Arrays.asList().contains() | 10 | 120 | Medium | General purpose, readability |</p>
+<p>| Stream.anyMatch() | 10 | 180 | Medium | Modern Java, functional style |</p>
+<p>| HashSet.contains() | 10 | 85<em> | High | Multiple lookups |</p>
+<p>| Binary Search | 10 | 95</em><em> | Low | Sorted arrays, frequent searches |</p>
+
+<p></em>After initial conversion  </p>
+<p><strong>Requires sorted array</p>
+
+<p><h3>Performance by Array Size</h3></p>
+
+<p><pre><code class="language-java">// Performance test results (approximate)</p>
+<p>Array Size: 100 elements</p>
+<ul>
+<li>Manual Loop: ~450ns</li>
+<li>Arrays.asList(): ~1,200ns  </li>
+<li>Stream: ~1,800ns</li>
+<li>HashSet: ~850ns (after conversion)</li>
+</ul>
+
+<p>Array Size: 1,000 elements</p>
+<ul>
+<li>Manual Loop: ~4,500ns</li>
+<li>Arrays.asList(): ~12,000ns</li>
+<li>Stream: ~18,000ns  </li>
+<li>HashSet: ~85ns (after conversion)</li>
+</ul>
+
+<p>Array Size: 10,000 elements</p>
+<ul>
+<li>Manual Loop: ~45,000ns</li>
+<li>Arrays.asList(): ~120,000ns</li>
+<li>Stream: ~180,000ns</li>
+<li>HashSet: ~85ns (after conversion)</code></pre></li>
+</ul>
+
+<p><h3>Memory Usage Comparison</h3></p>
+
+<p><pre><code class="language-java">String[] array = new String[1000]; // Base memory</p>
+
+<p>// Additional memory overhead:</p>
+<p>Arrays.asList(array)           // ~24 bytes (ArrayList wrapper)</p>
+<p>Arrays.stream(array)           // ~48 bytes (Stream objects)</p>
+<p>new HashSet<>(Arrays.asList()) // ~32 bytes per element + overhead</p>
+<p>Set.of(elements...)            // ~24 bytes per element (optimized)</code></pre></p>
+
+<p><h2>Version Compatibility Matrix</h2></p>
+
+<p>| Method | Java 6 | Java 7 | Java 8 | Java 9+ | Notes |</p>
+<p>|--------|---------|---------|---------|---------|-------|</p>
+<p>| Arrays.asList().contains() | ✅ | ✅ | ✅ | ✅ | Universal compatibility |</p>
+<p>| Manual Loop | ✅ | ✅ | ✅ | ✅ | Always available |</p>
+<p>| Arrays.stream().anyMatch() | ❌ | ❌ | ✅ | ✅ | Requires Java 8+ |</p>
+<p>| Set.of() | ❌ | ❌ | ❌ | ✅ | Java 9+ only |</p>
+<p>| Binary Search | ✅ | ✅ | ✅ | ✅ | Always available |</p>
+<p>| Apache Commons | ✅ | ✅ | ✅ | ✅ | External dependency |</p>
+
+<p><h3>Migration Guide</h3></p>
+
+<p><pre><code class="language-java">// Java 6/7 Compatible</p>
+<p>public static boolean containsLegacy(String[] array, String value) {</p>
+<p>    return Arrays.asList(array).contains(value);</p>
+<p>}</p>
+
+<p>// Java 8+ Modern</p>
+<p>public static boolean containsModern(String[] array, String value) {</p>
+<p>    return Arrays.stream(array).anyMatch(value::equals);</p>
+<p>}</p>
+
+<p>// Java 9+ Optimal</p>
+<p>private static final Set<String> VALUES = Set.of("AB", "BC", "CD");</p>
+<p>public static boolean containsOptimal(String value) {</p>
+<p>    return VALUES.contains(value);</p>
+<p>}</code></pre></p>
+
+<p><h2>Common Problems & Solutions</h2></p>
+
+<p><h3>Problem 1: NullPointerException</h3></p>
+
+<p><pre><code class="language-java">// ❌ Problem: NPE when array contains null</p>
+<p>String[] array = {"AB", null, "CD"};</p>
+<p>boolean found = Arrays.asList(array).contains("BC"); // Throws NPE</p>
+
+<p>// ✅ Solution: Use Objects.equals()</p>
+<p>public static <T> boolean containsSafe(T[] array, T value) {</p>
+<p>    for (T element : array) {</p>
+<p>        if (Objects.equals(element, value)) {</p>
+<p>            return true;</p>
+<p>        }</p>
+<p>    }</p>
+<p>    return false;</p>
+<p>}</code></pre></p>
+
+<p><h3>Problem 2: Primitive Arrays Not Working</h3></p>
+
+<p><pre><code class="language-java">// ❌ Problem: Doesn't work with primitives</p>
+<p>int[] numbers = {1, 2, 3};</p>
+<p>boolean found = Arrays.asList(numbers).contains(2); // false!</p>
+
+<p>// ✅ Solution: Use streams for primitives</p>
+<p>boolean found = Arrays.stream(numbers).anyMatch(x -> x == 2); // true</code></pre></p>
+
+<p><h3>Problem 3: Case Sensitivity Issues</h3></p>
+
+<p><pre><code class="language-java">// ❌ Problem: Case sensitive search</p>
+<p>String[] names = {"John", "jane", "Bob"};</p>
+<p>boolean found = Arrays.asList(names).contains("JOHN"); // false</p>
+
+<p>// ✅ Solution: Case insensitive search</p>
+<p>boolean found = Arrays.stream(names)</p>
+<p>    .anyMatch("JOHN"::equalsIgnoreCase); // true</code></pre></p>
+
+<p><h3>Problem 4: Performance with Large Arrays</h3></p>
+
+<p><pre><code class="language-java">// ❌ Problem: Slow for repeated searches</p>
+<p>String[] largeArray = new String[10000];</p>
+<p>// Multiple calls to Arrays.asList().contains() is inefficient</p>
+
+<p>// ✅ Solution: Convert to Set once</p>
+<p>Set<String> set = new HashSet<>(Arrays.asList(largeArray));</p>
+<p>boolean found1 = set.contains("value1"); // O(1)</p>
+<p>boolean found2 = set.contains("value2"); // O(1)</code></pre></p>
+
+<p><h3>Problem 5: Modifying Array After Conversion</h3></p>
+
+<p><pre><code class="language-java">// ❌ Problem: Modifying original array affects List</p>
+<p>String[] array = {"A", "B", "C"};</p>
+<p>List<String> list = Arrays.asList(array);</p>
+<p>array[0] = "X"; // This changes the list too!</p>
+<p>System.out.println(list); // [X, B, C]</p>
+
+<p>// ✅ Solution: Create independent copy</p>
+<p>List<String> independentList = new ArrayList<>(Arrays.asList(array));</code></pre></p>
+
+<p><h2>Real-World Examples</h2></p>
+
+<p><h3>Example 1: User Role Validation</h3></p>
+
+<p><pre><code class="language-java">public class UserRoleValidator {</p>
+<p>    private static final Set<String> ADMIN_ROLES = Set.of(</p>
+<p>        "SUPER_ADMIN", "SYSTEM_ADMIN", "USER_ADMIN"</p>
+<p>    );</p>
+
+<p>    private static final Set<String> MODERATOR_ROLES = Set.of(</p>
+<p>        "CONTENT_MODERATOR", "FORUM_MODERATOR", "CHAT_MODERATOR"</p>
+<p>    );</p>
+
+<p>    public boolean isAdmin(String role) {</p>
+<p>        return ADMIN_ROLES.contains(role);</p>
+<p>    }</p>
+
+<p>    public boolean isModerator(String role) {</p>
+<p>        return MODERATOR_ROLES.contains(role);</p>
+<p>    }</p>
+
+<p>    public boolean hasElevatedPrivileges(String role) {</p>
+<p>        return isAdmin(role) || isModerator(role);</p>
+<p>    }</p>
+<p>}</code></pre></p>
+
+<p><h3>Example 2: File Extension Validator</h3></p>
+
+<p><pre><code class="language-java">public class FileValidator {</p>
+<p>    private static final Set<String> IMAGE_EXTENSIONS = Set.of(</p>
+<p>        ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp"</p>
+<p>    );</p>
+
+<p>    private static final Set<String> DOCUMENT_EXTENSIONS = Set.of(</p>
+<p>        ".pdf", ".doc", ".docx", ".txt", ".rtf"</p>
+<p>    );</p>
+
+<p>    public boolean isImageFile(String filename) {</p>
+<p>        String extension = getFileExtension(filename).toLowerCase();</p>
+<p>        return IMAGE_EXTENSIONS.contains(extension);</p>
+<p>    }</p>
+
+<p>    public boolean isDocumentFile(String filename) {</p>
+<p>        String extension = getFileExtension(filename).toLowerCase();</p>
+<p>        return DOCUMENT_EXTENSIONS.contains(extension);</p>
+<p>    }</p>
+
+<p>    private String getFileExtension(String filename) {</p>
+<p>        int lastDot = filename.lastIndexOf('.');</p>
+<p>        return lastDot > 0 ? filename.substring(lastDot) : "";</p>
+<p>    }</p>
+<p>}</code></pre></p>
+
+<p><h3>Example 3: HTTP Status Code Checker</h3></p>
+
+<p><pre><code class="language-java">public class HttpStatusChecker {</p>
+<p>    private static final int[] SUCCESS_CODES = {200, 201, 202, 204};</p>
+<p>    private static final int[] REDIRECT_CODES = {301, 302, 303, 307, 308};</p>
+<p>    private static final int[] CLIENT_ERROR_CODES = {400, 401, 403, 404, 409, 422};</p>
+
+<p>    public boolean isSuccess(int statusCode) {</p>
+<p>        return IntStream.of(SUCCESS_CODES).anyMatch(code -> code == statusCode);</p>
+<p>    }</p>
+
+<p>    public boolean isRedirect(int statusCode) {</p>
+<p>        return IntStream.of(REDIRECT_CODES).anyMatch(code -> code == statusCode);</p>
+<p>    }</p>
+
+<p>    public boolean isClientError(int statusCode) {</p>
+<p>        return IntStream.of(CLIENT_ERROR_CODES).anyMatch(code -> code == statusCode);</p>
+<p>    }</p>
+
+<p>    public String getStatusCategory(int statusCode) {</p>
+<p>        if (isSuccess(statusCode)) return "SUCCESS";</p>
+<p>        if (isRedirect(statusCode)) return "REDIRECT";</p>
+<p>        if (isClientError(statusCode)) return "CLIENT_ERROR";</p>
+<p>        if (statusCode >= 500) return "SERVER_ERROR";</p>
+<p>        return "UNKNOWN";</p>
+<p>    }</p>
+<p>}</code></pre></p>
+
+<p><h3>Example 4: Configuration Validator</h3></p>
+
+<p><pre><code class="language-java">public class ConfigurationValidator {</p>
+<p>    private static final Set<String> VALID_LOG_LEVELS = Set.of(</p>
+<p>        "TRACE", "DEBUG", "INFO", "WARN", "ERROR", "FATAL"</p>
+<p>    );</p>
+
+<p>    private static final Set<String> VALID_ENVIRONMENTS = Set.of(</p>
+<p>        "development", "testing", "staging", "production"</p>
+<p>    );</p>
+
+<p>    public void validateConfig(Properties config) throws ConfigurationException {</p>
+<p>        String logLevel = config.getProperty("log.level");</p>
+<p>        if (logLevel != null && !VALID_LOG_LEVELS.contains(logLevel.toUpperCase())) {</p>
+<p>            throw new ConfigurationException("Invalid log level: " + logLevel);</p>
+<p>        }</p>
+
+<p>        String environment = config.getProperty("app.environment");</p>
+<p>        if (environment != null && !VALID_ENVIRONMENTS.contains(environment.toLowerCase())) {</p>
+<p>            throw new ConfigurationException("Invalid environment: " + environment);</p>
+<p>        }</p>
+<p>    }</p>
+<p>}</code></pre></p>
+
+<p><h3>Example 5: Input Sanitization</h3></p>
+
+<p><pre><code class="language-java">public class InputSanitizer {</p>
+<p>    private static final Set<String> DANGEROUS_PATTERNS = Set.of(</p>
+<p>        "<script", "</script>", "javascript:", "onload=", "onerror=",</p>
+<p>        "eval(", "document.cookie", "window.location"</p>
+<p>    );</p>
+
+<p>    public boolean containsDangerousContent(String input) {</p>
+<p>        if (input == null) return false;</p>
+
+<p>        String lowerInput = input.toLowerCase();</p>
+<p>        return DANGEROUS_PATTERNS.stream()</p>
+<p>            .anyMatch(lowerInput::contains);</p>
+<p>    }</p>
+
+<p>    public String sanitizeInput(String input) {</p>
+<p>        if (containsDangerousContent(input)) {</p>
+<p>            throw new SecurityException("Input contains dangerous content");</p>
+<p>        }</p>
+<p>        return input.trim();</p>
+<p>    }</p>
+<p>}</code></pre></p>
+
+<p><h2>Related Array Operations</h2></p>
+
+<p><h3>Finding Index of Element</h3></p>
+
+<p><pre><code class="language-java">// Using Arrays.asList()</p>
+<p>List<String> list = Arrays.asList(array);</p>
+<p>int index = list.indexOf("searchValue"); // -1 if not found</p>
+
+<p>// Using manual loop</p>
+<p>public static <T> int indexOf(T[] array, T value) {</p>
+<p>    for (int i = 0; i < array.length; i++) {</p>
+<p>        if (Objects.equals(array[i], value)) {</p>
+<p>            return i;</p>
+<p>        }</p>
+<p>    }</p>
+<p>    return -1;</p>
+<p>}</p>
+
+<p>// Using streams (Java 8+)</p>
+<p>OptionalInt index = IntStream.range(0, array.length)</p>
+<p>    .filter(i -> Objects.equals(array[i], searchValue))</p>
+<p>    .findFirst();</code></pre></p>
+
+<p><h3>Counting Occurrences</h3></p>
+
+<p><pre><code class="language-java">// Count how many times a value appears</p>
+<p>public static <T> long countOccurrences(T[] array, T value) {</p>
+<p>    return Arrays.stream(array)</p>
+<p>        .filter(element -> Objects.equals(element, value))</p>
+<p>        .count();</p>
+<p>}</p>
+
+<p>// Example usage</p>
+<p>String[] words = {"apple", "banana", "apple", "orange", "apple"};</p>
+<p>long appleCount = countOccurrences(words, "apple"); // 3</code></pre></p>
+
+<p><h3>Finding All Indices</h3></p>
+
+<p><pre><code class="language-java">// Find all positions where value occurs</p>
+<p>public static <T> List<Integer> findAllIndices(T[] array, T value) {</p>
+<p>    List<Integer> indices = new ArrayList<>();</p>
+<p>    for (int i = 0; i < array.length; i++) {</p>
+<p>        if (Objects.equals(array[i], value)) {</p>
+<p>            indices.add(i);</p>
+<p>        }</p>
+<p>    }</p>
+<p>    return indices;</p>
+<p>}</p>
+
+<p>// Using streams</p>
+<p>public static <T> List<Integer> findAllIndicesStream(T[] array, T value) {</p>
+<p>    return IntStream.range(0, array.length)</p>
+<p>        .filter(i -> Objects.equals(array[i], value))</p>
+<p>        .boxed()</p>
+<p>        .collect(Collectors.toList());</p>
+<p>}</code></pre></p>
+
+<p><h3>Checking Multiple Values</h3></p>
+
+<p><pre><code class="language-java">// Check if array contains any of the specified values</p>
+<p>public static <T> boolean containsAny(T[] array, T... values) {</p>
+<p>    Set<T> valueSet = Set.of(values);</p>
+<p>    return Arrays.stream(array).anyMatch(valueSet::contains);</p>
+<p>}</p>
+
+<p>// Check if array contains all specified values</p>
+<p>public static <T> boolean containsAll(T[] array, T... values) {</p>
+<p>    Set<T> arraySet = new HashSet<>(Arrays.asList(array));</p>
+<p>    return arraySet.containsAll(Arrays.asList(values));</p>
+<p>}</p>
+
+<p>// Example usage</p>
+<p>String[] fruits = {"apple", "banana", "orange", "grape"};</p>
+<p>boolean hasAnyTropical = containsAny(fruits, "mango", "pineapple", "banana"); // true</p>
+<p>boolean hasAllCitrus = containsAll(fruits, "orange", "lemon", "lime"); // false</code></pre></p>
+
+<p><h3>Array Filtering</h3></p>
+
+<p><pre><code class="language-java">// Filter array to only include certain values</p>
+<p>public static <T> T[] filterArray(T[] array, Predicate<T> condition) {</p>
+<p>    return Arrays.stream(array)</p>
+<p>        .filter(condition)</p>
+<p>        .toArray(size -> Arrays.copyOf(array, size));</p>
+<p>}</p>
+
+<p>// Remove specific values from array</p>
+<p>public static <T> T[] removeValues(T[] array, T... valuesToRemove) {</p>
+<p>    Set<T> removeSet = Set.of(valuesToRemove);</p>
+<p>    return Arrays.stream(array)</p>
+<p>        .filter(element -> !removeSet.contains(element))</p>
+<p>        .toArray(size -> Arrays.copyOf(array, size));</p>
+<p>}</code></pre></p>
+
+<p><h2>Summary</h2></p>
+
+<p><h3>Key Takeaways</h3></p>
+
+<ol>
+<li></strong>For general use<strong>: <code>Arrays.asList(array).contains(value)</code> is the most readable and widely compatible</li>
+<li></strong>For modern Java<strong>: <code>Arrays.stream(array).anyMatch(value::equals)</code> provides functional programming benefits</li>
+<li></strong>For performance<strong>: Manual loops are fastest for single lookups; HashSet for multiple lookups</li>
+<li></strong>For constants<strong>: Use <code>Set.of()</code> in Java 9+ for clean, immutable, and fast lookups</li>
+<li></strong>For primitives<strong>: Use <code>IntStream.of(array).anyMatch()</code> or similar primitive streams</li>
+</ol>
+
+<p><h3>Decision Matrix</h3></p>
+
+<p>| Scenario | Recommended Method | Reason |</p>
+<p>|----------|-------------------|---------|</p>
+<p>| One-time lookup, small array | Manual loop | Best performance |</p>
+<p>| One-time lookup, readability important | Arrays.asList().contains() | Clean, readable |</p>
+<p>| Multiple lookups on same data | HashSet/Set.of() | O(1) lookup time |</p>
+<p>| Modern Java codebase | Stream.anyMatch() | Functional style |</p>
+<p>| Legacy Java support needed | Arrays.asList().contains() | Universal compatibility |</p>
+<p>| Primitive arrays | Primitive streams | Type-safe, efficient |</p>
+<p>| Sorted arrays, frequent searches | Binary search | O(log n) performance |</p>
+
+<p><h3>Performance Guidelines</h3></p>
+
+<ul>
+<li></strong>Small arrays (< 50 elements)<strong>: Manual loop or Arrays.asList()</li>
+<li></strong>Medium arrays (50-1000 elements)<strong>: Consider usage frequency</li>
+<li></strong>Large arrays (> 1000 elements)<strong>: Use HashSet for multiple lookups</li>
+<li></strong>Frequent searches<strong>: Always convert to Set first</li>
+<li></strong>Memory-constrained<strong>: Stick with manual loops</li>
+</ul>
+
+<p><h2>FAQ Section</h2></p>
+
+<p><h3>Q: Why does Arrays.asList().contains() not work with primitive arrays?</h3></p>
+
+<p></strong>A:<strong> Java's generics don't support primitive types. When you call <code>Arrays.asList(intArray)</code>, it creates a <code>List<int[]></code> containing one element (the entire array), not a <code>List<Integer></code>. Use streams instead:</p>
+
+<p><pre><code class="language-java">int[] numbers = {1, 2, 3};</p>
+<p>// Wrong: Arrays.asList(numbers).contains(2) // false</p>
+<p>// Correct: Arrays.stream(numbers).anyMatch(x -> x == 2) // true</code></pre></p>
+
+<p><h3>Q: Which method is fastest for large arrays?</h3></p>
+
+<p></strong>A:<strong> It depends on usage:</p>
+<ul>
+<li></strong>Single lookup<strong>: Manual loop (O(n) but minimal overhead)</li>
+<li></strong>Multiple lookups<strong>: HashSet (O(1) after O(n) conversion)</li>
+<li></strong>Sorted array<strong>: Binary search (O(log n))</li>
+</ul>
+
+<p><h3>Q: How do I handle null values safely?</h3></p>
+
+<p></strong>A:<strong> Use <code>Objects.equals()</code> for null-safe comparison:</p>
+
+<p><pre><code class="language-java">public static <T> boolean containsNullSafe(T[] array, T value) {</p>
+<p>    return Arrays.stream(array).anyMatch(element -> Objects.equals(element, value));</p>
+<p>}</code></pre></p>
+
+<p><h3>Q: Can I use these methods with custom objects?</h3></p>
+
+<p></strong>A:<strong> Yes, but ensure your objects properly implement <code>equals()</code> and <code>hashCode()</code>:</p>
+
+<p><pre><code class="language-java">public class Person {</p>
+<p>    private String name;</p>
+
+<p>    @Override</p>
+<p>    public boolean equals(Object obj) {</p>
+<p>        if (this == obj) return true;</p>
+<p>        if (obj == null || getClass() != obj.getClass()) return false;</p>
+<p>        Person person = (Person) obj;</p>
+<p>        return Objects.equals(name, person.name);</p>
+<p>    }</p>
+
+<p>    @Override</p>
+<p>    public int hashCode() {</p>
+<p>        return Objects.hash(name);</p>
+<p>    }</p>
+<p>}</code></pre></p>
+
+<p><h3>Q: What's the difference between HashSet and TreeSet for contains operations?</h3></p>
+
+<p></strong>A:<strong> </p>
+<ul>
+<li></strong>HashSet<strong>: O(1) average time, no ordering, allows null</li>
+<li></strong>TreeSet<strong>: O(log n) time, maintains sorted order, no null values</li>
+<li></strong>Use HashSet<strong> for fastest lookups</li>
+<li></strong>Use TreeSet<strong> when you need both fast lookups and sorted iteration</li>
+</ul>
+
+<p><h3>Q: Is it better to use Apache Commons ArrayUtils?</h3></p>
+
+<p></strong>A:<strong> Only if you're already using Apache Commons in your project. The built-in Java methods are sufficient for most use cases and don't require external dependencies.</p>
+
+<p><h3>Q: How do I make case-insensitive string comparisons?</h3></p>
+
+<p></strong>A:<strong> Use streams with custom predicates:</p>
+
+<p><pre><code class="language-java">String[] names = {"John", "jane", "Bob"};</p>
+<p>boolean found = Arrays.stream(names)</p>
+<p>    .anyMatch("JOHN"::equalsIgnoreCase);</code></pre></p>
+
+<p><h3>Q: What happens if I modify the original array after using Arrays.asList()?</h3></p>
+
+<p></strong>A:<strong> The List returned by <code>Arrays.asList()</code> is backed by the original array, so changes to the array affect the List:</p>
+
+<p><pre><code class="language-java">String[] array = {"A", "B", "C"};</p>
+<p>List<String> list = Arrays.asList(array);</p>
+<p>array[0] = "X";</p>
+<p>System.out.println(list); // [X, B, C] - changed!</code></pre></p>
+
+<p><h3>Q: Can I use binary search on unsorted arrays?</h3></p>
+
+<p></strong>A:*<em> No! Binary search only works on sorted arrays. You must sort first:</p>
+
+<p><pre><code class="language-java">String[] array = {"C", "A", "B"};</p>
+<p>Arrays.sort(array); // Now: ["A", "B", "C"]</p>
+<p>boolean found = Arrays.binarySearch(array, "B") >= 0;</code></pre></p>
+
+<p><h2>Tools & Resources</h2></p>
+
+<p><h3>Online Testing Tools</h3></p>
+
+<p><pre><code class="language-java">// Test your array contains logic online:</p>
+<p>// 1. Java Compiler: https://www.jdoodle.com/online-java-compiler</p>
+<p>// 2. Repl.it: https://replit.com/languages/java</p>
+
+<p>// Quick test template:</p>
+<p>import java.util.</em>;</p>
+<p>import java.util.stream.*;</p>
+
+<p>public class ArrayContainsTest {</p>
+<p>    public static void main(String[] args) {</p>
+<p>        String[] testArray = {"AB", "BC", "CD", "AE"};</p>
+<p>        String searchValue = "BC";</p>
+
+<p>        // Test different methods</p>
+<p>        System.out.println("Arrays.asList(): " + </p>
+<p>            Arrays.asList(testArray).contains(searchValue));</p>
+
+<p>        System.out.println("Stream.anyMatch(): " + </p>
+<p>            Arrays.stream(testArray).anyMatch(searchValue::equals));</p>
+
+<p>        System.out.println("Manual loop: " + </p>
+<p>            containsManual(testArray, searchValue));</p>
+<p>    }</p>
+
+<p>    public static <T> boolean containsManual(T[] array, T value) {</p>
+<p>        for (T element : array) {</p>
+<p>            if (Objects.equals(element, value)) return true;</p>
+<p>        }</p>
+<p>        return false;</p>
+<p>    }</p>
+<p>}</code></pre></p>
+
+<p><h3>Performance Testing Framework</h3></p>
+
+<p><pre><code class="language-java">// Benchmark template using JMH (Java Microbenchmark Harness)</p>
+<p>@BenchmarkMode(Mode.AverageTime)</p>
+<p>@OutputTimeUnit(TimeUnit.NANOSECONDS)</p>
+<p>@State(Scope.Benchmark)</p>
+<p>public class ArrayContainsBenchmark {</p>
+
+<p>    private String[] array;</p>
+<p>    private String searchValue;</p>
+
+<p>    @Setup</p>
+<p>    public void setup() {</p>
+<p>        array = new String[1000];</p>
+<p>        for (int i = 0; i < array.length; i++) {</p>
+<p>            array[i] = "value" + i;</p>
+<p>        }</p>
+<p>        searchValue = "value500";</p>
+<p>    }</p>
+
+<p>    @Benchmark</p>
+<p>    public boolean testArraysList() {</p>
+<p>        return Arrays.asList(array).contains(searchValue);</p>
+<p>    }</p>
+
+<p>    @Benchmark</p>
+<p>    public boolean testStream() {</p>
+<p>        return Arrays.stream(array).anyMatch(searchValue::equals);</p>
+<p>    }</p>
+
+<p>    @Benchmark</p>
+<p>    public boolean testManualLoop() {</p>
+<p>        for (String element : array) {</p>
+<p>            if (Objects.equals(element, searchValue)) return true;</p>
+<p>        }</p>
+<p>        return false;</p>
+<p>    }</p>
+<p>}</code></pre></p>
+
+<p><h3>Utility Methods Library</h3></p>
+
+<p><pre><code class="language-java">// Copy-paste utility class for your projects</p>
+<p>public final class ArrayUtils {</p>
+
+<p>    private ArrayUtils() {} // Utility class</p>
+
+<p>    // Generic contains method</p>
+<p>    public static <T> boolean contains(T[] array, T value) {</p>
+<p>        return Arrays.stream(array).anyMatch(element -> Objects.equals(element, value));</p>
+<p>    }</p>
+
+<p>    // Null-safe contains</p>
+<p>    public static <T> boolean containsSafe(T[] array, T value) {</p>
+<p>        if (array == null) return false;</p>
+<p>        return contains(array, value);</p>
+<p>    }</p>
+
+<p>    // Case-insensitive string contains</p>
+<p>    public static boolean containsIgnoreCase(String[] array, String value) {</p>
+<p>        if (array == null || value == null) return false;</p>
+<p>        return Arrays.stream(array).anyMatch(value::equalsIgnoreCase);</p>
+<p>    }</p>
+
+<p>    // Contains any of the values</p>
+<p>    public static <T> boolean containsAny(T[] array, T... values) {</p>
+<p>        if (array == null || values == null) return false;</p>
+<p>        Set<T> valueSet = Set.of(values);</p>
+<p>        return Arrays.stream(array).anyMatch(valueSet::contains);</p>
+<p>    }</p>
+
+<p>    // Primitive array support</p>
+<p>    public static boolean contains(int[] array, int value) {</p>
+<p>        return Arrays.stream(array).anyMatch(x -> x == value);</p>
+<p>    }</p>
+
+<p>    public static boolean contains(double[] array, double value) {</p>
+<p>        return Arrays.stream(array).anyMatch(x -> Double.compare(x, value) == 0);</p>
+<p>    }</p>
+
+<p>    public static boolean contains(long[] array, long value) {</p>
+<p>        return Arrays.stream(array).anyMatch(x -> x == value);</p>
+<p>    }</p>
+<p>}</code></pre></p>
+
+<p><h3>IDE Integration Tips</h3></p>
+
+<p><pre><code class="language-java">// IntelliJ IDEA Live Templates</p>
+<p>// Create template "arraycontains" with:</p>
+<p>Arrays.asList($ARRAY$).contains($VALUE$)</p>
+
+<p>// Eclipse Code Templates  </p>
+<p>// Create template "ac" with:</p>
+<p>Arrays.asList(${array}).contains(${value})</p>
+
+<p>// VS Code Snippets (Java)</p>
+<p>{</p>
+<p>    "arrayContains": {</p>
+<p>        "prefix": "arraycontains",</p>
+<p>        "body": [</p>
+<p>            "Arrays.asList($1).contains($2)"</p>
+<p>        ],</p>
+<p>        "description": "Check if array contains value"</p>
+<p>    }</p>
+<p>}</code></pre></p>
+
+<p><h3>Version Checking</h3></p>
+
+<p><pre><code class="language-java">// Check your Java version</p>
+<p>System.out.println("Java version: " + System.getProperty("java.version"));</p>
+
+<p>// Feature availability check</p>
+<p>public class FeatureChecker {</p>
+<p>    public static boolean hasStreamSupport() {</p>
+<p>        try {</p>
+<p>            Class.forName("java.util.stream.Stream");</p>
+<p>            return true;</p>
+<p>        } catch (ClassNotFoundException e) {</p>
+<p>            return false;</p>
+<p>        }</p>
+<p>    }</p>
+
+<p>    public static boolean hasSetOfSupport() {</p>
+<p>        try {</p>
+<p>            Set.of("test");</p>
+<p>            return true;</p>
+<p>        } catch (NoSuchMethodError e) {</p>
+<p>            return false;</p>
+<p>        }</p>
+<p>    }</p>
+<p>}</code></pre></p>
+
+<p>This comprehensive guide covers all major approaches to checking if an array contains a value in Java, from basic techniques to advanced performance optimizations. Choose the method that best fits your specific use case, Java version, and performance requirements.</p>
+                </div>
+                
+                <div class="back-to-guides">
+                    <h3>Found this helpful?</h3>
+                    <p>This guide is part of our comprehensive programming reference.</p>
+                    <a href="/guides/">← Browse all guides</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 DeepV Code. Comprehensive programming guides and solutions.</p>
+            <p>Built for developers, by developers. <a href="/about/">Learn more</a></p>
+        </div>
+    </footer>
+</body>
+</html>

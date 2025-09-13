@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll to the top of the page using JavaScript? - DeepV Code</title>
+    <meta name="description" content="Comprehensive guide to scroll to the top of the page using javascript?">
+    <style>
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: #fff;
+            border-bottom: 1px solid #e6e6e6;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #3b49df;
+        }
+        
+        /* Article */
+        .article {
+            padding: 2rem 0;
+            min-height: calc(100vh - 200px);
+        }
+        
+        .article-header {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #3b49df;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            background: #3b49df;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #000;
+            line-height: 1.2;
+        }
+        
+        .article-description {
+            font-size: 1.125rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        /* Content */
+        .content {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .content h1 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 2rem 0 1rem 0;
+            color: #000;
+        }
+        
+        .content h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 1.5rem 0 1rem 0;
+            color: #000;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e6e6e6;
+        }
+        
+        .content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 1.25rem 0 0.75rem 0;
+            color: #333;
+        }
+        
+        .content p {
+            margin-bottom: 1rem;
+        }
+        
+        .content ul, .content ol {
+            margin: 1rem 0 1rem 2rem;
+        }
+        
+        .content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .content code {
+            background: #f4f4f4;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .content pre {
+            background: #f8f8f8;
+            border: 1px solid #e6e6e6;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        
+        .content pre code {
+            background: none;
+            padding: 0;
+            border-radius: 0;
+            font-size: 0.9rem;
+        }
+        
+        .content blockquote {
+            border-left: 4px solid #3b49df;
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: #666;
+            font-style: italic;
+        }
+        
+        .content a {
+            color: #3b49df;
+            text-decoration: none;
+        }
+        
+        .content a:hover {
+            text-decoration: underline;
+        }
+        
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        .content th, .content td {
+            border: 1px solid #e6e6e6;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        
+        .content th {
+            background: #f8f8f8;
+            font-weight: 600;
+        }
+        
+        /* Back to guides */
+        .back-to-guides {
+            margin: 3rem 0;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .back-to-guides h3 {
+            margin-bottom: 0.5rem;
+            color: #3b49df;
+        }
+        
+        .back-to-guides p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+        
+        .back-to-guides a {
+            color: #3b49df;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .back-to-guides a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            background: #000;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+        
+        footer a {
+            color: #3b49df;
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            
+            .content h1 {
+                font-size: 1.75rem;
+            }
+            
+            .content h2 {
+                font-size: 1.25rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">DeepV Code</a>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/guides/">Guides</a></li>
+                <li><a href="/about/">About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article class="article">
+            <div class="container">
+                <div class="article-header">
+                    <div class="category-badge">Frontend</div>
+                    <h1 class="article-title">Scroll to the top of the page using JavaScript?</h1>
+                    <p class="article-description">Comprehensive guide to scroll to the top of the page using javascript?</p>
+                </div>
+                
+                <div class="content">
+                    
+<p><h1>Scroll to the top of the page using JavaScript?</h1></p>
+
+<p><h2>Quick Answer</h2></p>
+
+<p>This is a placeholder article generated from StackOverflow data. The actual implementation will use AI to generate comprehensive content.</p>
+
+<p><h2>Choose Your Method</h2></p>
+
+<p>[REQUEST IMAGE: decision_tree_mermaid]</p>
+
+<p><h2>Table of Contents</h2></p>
+
+<ul>
+<li><a href="#method-1">Method 1</a></li>
+<li><a href="#method-2">Method 2</a></li>
+<li><a href="#performance-comparison">Performance Comparison</a></li>
+</ul>
+
+<p><h2>Ready-to-Use Code</h2></p>
+
+<p><pre><code class="language-javascript">// Placeholder code from the Q&A data</p>
+<p>console.log("Generated from StackOverflow Q&A");</code></pre></p>
+
+<p><h2>Method 1: Primary Approach</h2></p>
+
+<p>Based on the highest-voted answer in the Q&A data.</p>
+
+<p><h2>Performance Comparison</h2></p>
+
+<p>[REQUEST IMAGE: performance_chart]</p>
+
+<p><h2>Frequently Asked Questions</h2></p>
+
+<p><h3>Q: How was this generated?</h3></p>
+<p>A: From StackOverflow Q&A data using the workflow-002 system.</p>
+
+<p><h2>Tools & Resources</h2></p>
+
+<ul>
+<li>Original question: https://stackoverflow.com/questions/1144805/scroll-to-the-top-of-the-page-using-javascript</li>
+<li>Community votes: 2083</li>
+</ul>
+
+                </div>
+                
+                <div class="back-to-guides">
+                    <h3>Found this helpful?</h3>
+                    <p>This guide is part of our comprehensive programming reference.</p>
+                    <a href="/guides/">← Browse all guides</a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 DeepV Code. Comprehensive programming guides and solutions.</p>
+            <p>Built for developers, by developers. <a href="/about/">Learn more</a></p>
+        </div>
+    </footer>
+</body>
+</html>
